@@ -1,6 +1,6 @@
-function timeSince(date) {
+export function timeSince(date) {
 
-  date = new Date(date)
+  var date = new Date(date)
 
   var seconds = Math.floor((new Date() - date) / 1000);
 

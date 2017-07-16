@@ -9775,11 +9775,11 @@ var _Video = __webpack_require__(185);
 
 var _Video2 = _interopRequireDefault(_Video);
 
-var _fetch = __webpack_require__(186);
+var _fetch = __webpack_require__(187);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_require__(187);
+__webpack_require__(188);
 
 _reactDom2.default.render(_react2.default.createElement(
 	'div',
@@ -22524,6 +22524,8 @@ var _react = __webpack_require__(49);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _utils = __webpack_require__(186);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22541,8 +22543,12 @@ var Video = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Video.__proto__ || Object.getPrototypeOf(Video)).call(this));
 
 		_this.state = {
-			title: ''
+			title: '',
+			thumbnail: '',
+			channelTitle: '',
+			viewCount: ''
 		};
+		_this.formatDate = _this.formatDate.bind(_this);
 		return _this;
 	}
 
@@ -22554,16 +22560,73 @@ var Video = function (_React$Component) {
 			fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg').then(function (response) {
 				return response.json();
 			}).then(function (data) {
-				return _this2.setState({ title: data.items[0].snippet.title });
+				return _this2.setState({ title: data.items[0].snippet.title,
+					thumbnail: data.items[0].snippet.thumbnails.default.url,
+					channelTitle: data.items[0].snippet.channelTitle,
+					viewCount: data.items[0].statistics.viewCount,
+					date: data.items[0].snippet.publishedAt
+				});
 			});
+		}
+	}, {
+		key: 'formatDate',
+		value: function formatDate() {
+
+			var date = new Date(this.state.date);
+
+			var seconds = Math.floor((new Date() - date) / 1000);
+
+			var interval = Math.floor(seconds / 31536000);
+
+			if (interval > 1) {
+				return interval + " years ago";
+			}
+			interval = Math.floor(seconds / 2592000);
+			if (interval > 1) {
+				return interval + " months ago";
+			}
+			interval = Math.floor(seconds / 86400);
+			if (interval > 1) {
+				return interval + " days ago";
+			}
+			interval = Math.floor(seconds / 3600);
+			if (interval > 1) {
+				return interval + " hours ago";
+			}
+			interval = Math.floor(seconds / 60);
+			if (interval > 1) {
+				return interval + " minutes ago";
+			}
+			return Math.floor(seconds) + " seconds ago";
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
-				'p',
+				'div',
 				null,
-				title
+				_react2.default.createElement('img', { src: this.state.thumbnail }),
+				_react2.default.createElement(
+					'p',
+					null,
+					this.state.title
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					this.state.channelTitle
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					this.state.viewCount,
+					' views'
+				),
+				_react2.default.createElement(
+					'p',
+					null,
+					(0, _utils.timeSince)(this.state.date)
+				)
 			);
 		}
 	}]);
@@ -22580,6 +22643,43 @@ exports.default = Video;
 "use strict";
 
 
+function timeSince(date) {
+
+  var date = new Date(date);
+
+  var seconds = Math.floor((new Date() - date) / 1000);
+
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + " years ago";
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months ago";
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days ago";
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours ago";
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes ago";
+  }
+  return Math.floor(seconds) + " seconds ago";
+}
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 function fetchVideo(url) {
 	return fetch(url).then(function (response) {
 		return response.json();
@@ -22589,13 +22689,13 @@ function fetchVideo(url) {
 }
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(188);
+var content = __webpack_require__(189);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -22603,7 +22703,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(190)(content, options);
+var update = __webpack_require__(191)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -22620,10 +22720,10 @@ if(false) {
 }
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(189)(undefined);
+exports = module.exports = __webpack_require__(190)(undefined);
 // imports
 
 
@@ -22634,7 +22734,7 @@ exports.push([module.i, ".header {\n  background: #141414;\n  position: fixed;\n
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports) {
 
 /*
@@ -22716,7 +22816,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -22753,7 +22853,7 @@ var stylesInDom = {},
 	singletonElement = null,
 	singletonCounter = 0,
 	styleElementsInsertedAtTop = [],
-	fixUrls = __webpack_require__(191);
+	fixUrls = __webpack_require__(192);
 
 module.exports = function(list, options) {
 	if(typeof DEBUG !== "undefined" && DEBUG) {
@@ -23029,7 +23129,7 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports) {
 
 
