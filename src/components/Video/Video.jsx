@@ -18,9 +18,9 @@ export default class Video extends React.Component {
 			.then(response => response.json())
 			.then(data => 
 			this.setState({title: data.items[0].snippet.title,
-							thumbnail: data.items[0].snippet.thumbnails.default.url,
+							thumbnail: data.items[0].snippet.thumbnails.medium.url,
 							channelTitle: data.items[0].snippet.channelTitle,
-							viewCount: data.items[0].statistics.viewCount,
+							viewCount: parseInt(data.items[0].statistics.viewCount),
 							date: data.items[0].snippet.publishedAt
 			})
 		)
@@ -28,12 +28,14 @@ export default class Video extends React.Component {
 
 	render() {
 		return (
-			<div> 
-				<img src={this.state.thumbnail}/>
-				<p>{this.state.title}</p>
-				<p>{this.state.channelTitle}</p>
-				<p>{this.state.viewCount} views</p>
-				<p>{timeSince(this.state.date)}</p>
+			<div className="vid"> 
+				<img src={this.state.thumbnail} className="thumbnail"/>
+				<h3 className="vid-title">{this.state.title}</h3>
+				<p className="vid-channel">{this.state.channelTitle}</p>
+				<ul className="vid-stats">
+					<li>{this.state.viewCount.toLocaleString('en')} views</li>
+					<li>{timeSince(this.state.date)}</li>
+				</ul>
 			</div>
 		)
 	}

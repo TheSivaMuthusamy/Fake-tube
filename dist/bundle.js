@@ -22548,7 +22548,6 @@ var Video = function (_React$Component) {
 			channelTitle: '',
 			viewCount: ''
 		};
-		_this.formatDate = _this.formatDate.bind(_this);
 		return _this;
 	}
 
@@ -22561,71 +22560,44 @@ var Video = function (_React$Component) {
 				return response.json();
 			}).then(function (data) {
 				return _this2.setState({ title: data.items[0].snippet.title,
-					thumbnail: data.items[0].snippet.thumbnails.default.url,
+					thumbnail: data.items[0].snippet.thumbnails.medium.url,
 					channelTitle: data.items[0].snippet.channelTitle,
-					viewCount: data.items[0].statistics.viewCount,
+					viewCount: data.items[0].statistics.viewCount.toLocaleString('en'),
 					date: data.items[0].snippet.publishedAt
 				});
 			});
-		}
-	}, {
-		key: 'formatDate',
-		value: function formatDate() {
-
-			var date = new Date(this.state.date);
-
-			var seconds = Math.floor((new Date() - date) / 1000);
-
-			var interval = Math.floor(seconds / 31536000);
-
-			if (interval > 1) {
-				return interval + " years ago";
-			}
-			interval = Math.floor(seconds / 2592000);
-			if (interval > 1) {
-				return interval + " months ago";
-			}
-			interval = Math.floor(seconds / 86400);
-			if (interval > 1) {
-				return interval + " days ago";
-			}
-			interval = Math.floor(seconds / 3600);
-			if (interval > 1) {
-				return interval + " hours ago";
-			}
-			interval = Math.floor(seconds / 60);
-			if (interval > 1) {
-				return interval + " minutes ago";
-			}
-			return Math.floor(seconds) + " seconds ago";
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				null,
-				_react2.default.createElement('img', { src: this.state.thumbnail }),
+				{ className: 'vid' },
+				_react2.default.createElement('img', { src: this.state.thumbnail, className: 'thumbnail' }),
 				_react2.default.createElement(
-					'p',
-					null,
+					'h3',
+					{ className: 'vid-title' },
 					this.state.title
 				),
 				_react2.default.createElement(
 					'p',
-					null,
+					{ className: 'vid-channel' },
 					this.state.channelTitle
 				),
 				_react2.default.createElement(
-					'p',
-					null,
-					this.state.viewCount,
-					' views'
-				),
-				_react2.default.createElement(
-					'p',
-					null,
-					(0, _utils.timeSince)(this.state.date)
+					'ul',
+					{ className: 'vid-stats' },
+					_react2.default.createElement(
+						'li',
+						null,
+						this.state.viewCount,
+						' views'
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						(0, _utils.timeSince)(this.state.date)
+					)
 				)
 			);
 		}
@@ -22643,6 +22615,10 @@ exports.default = Video;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.timeSince = timeSince;
 function timeSince(date) {
 
   var date = new Date(date);
@@ -22728,7 +22704,7 @@ exports = module.exports = __webpack_require__(190)(undefined);
 
 
 // module
-exports.push([module.i, ".header {\n  background: #141414;\n  position: fixed;\n  right: 0;\n  top: 0;\n  width: 100%;\n  height: 60px;\n  border-bottom: 1px solid #3A3A3A;\n  z-index: 1; }\n  .header-content {\n    position: relative;\n    display: flex;\n    height: 100%;\n    justify-content: space-between; }\n\nbody {\n  background: #141414;\n  font: 400 13px \"CoreSans\", Arial,sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  color: #A0A0A0;\n  letter-spacing: .02em;\n  position: relative;\n  margin: 80px 40px; }\n\nul, li {\n  list-style: none;\n  padding: 0;\n  margin: 0; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.header {\n  background: #141414;\n  position: fixed;\n  right: 0;\n  top: 0;\n  width: 100%;\n  height: 60px;\n  border-bottom: 1px solid #3A3A3A;\n  z-index: 1; }\n  .header-content {\n    position: relative;\n    display: flex;\n    height: 100%;\n    justify-content: space-between; }\n\nbody {\n  background: #141414;\n  font: 400 13px \"CoreSans\", Arial,sans-serif;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-font-smoothing: antialiased;\n  color: #A0A0A0;\n  letter-spacing: .02em;\n  position: relative;\n  margin: 80px 40px; }\n\nul, li {\n  list-style: none;\n  padding: 0;\n  margin: 0; }\n\nh3 {\n  margin: 0; }\n\n.thumbnail {\n  height: 110px;\n  width: 196px;\n  margin-bottom: 4px; }\n\n.vid {\n  max-width: 196px;\n  line-height: 1.3em;\n  font-size: 11px; }\n\n.vid-title {\n  margin-right: 20px;\n  margin-bottom: 1px;\n  font-size: 13px;\n  display: block;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: normal;\n  word-wrap: break-word; }\n\n.vid-channel {\n  margin: 0;\n  display: block;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: normal;\n  word-wrap: break-word; }\n\n.vid-stats li {\n  display: inline-block; }\n\n.vid-stats li:last-child:before {\n  content: \"\\2022\";\n  margin: 0 5px; }\n", ""]);
 
 // exports
 
