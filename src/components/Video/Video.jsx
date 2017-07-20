@@ -5,37 +5,35 @@ export default class Video extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			title: '',
-			thumbnail: '',
-			channelTitle: '',
-			viewCount: ''
+			vids: [] 
 		}
 	}
 
 	componentDidMount() {
 
-		fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
+		fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=25&regionCode=US&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
 			.then(response => response.json())
 			.then(data => 
-			this.setState({title: data.items[0].snippet.title,
-							thumbnail: data.items[0].snippet.thumbnails.medium.url,
-							channelTitle: data.items[0].snippet.channelTitle,
-							viewCount: parseInt(data.items[0].statistics.viewCount),
-							date: data.items[0].snippet.publishedAt
-			})
+			this.setState({vids: data.items})
 		)
 	}
 
 	render() {
 		return (
-			<div className="vid"> 
-				<img src={this.state.thumbnail} className="thumbnail"/>
-				<h3 className="vid-title">{this.state.title}</h3>
-				<p className="vid-channel">{this.state.channelTitle}</p>
-				<ul className="vid-stats">
-					<li>{this.state.viewCount.toLocaleString('en')} views</li>
-					<li>{timeSince(this.state.date)}</li>
-				</ul>
+			<div className="vid-grid">
+				{this.state.vids.map((vid, key) =>  {
+					return (
+						<div className="vid" key={key}> 
+							<img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/>
+							<h3 className="vid-title">{vid.snippet.title}</h3>
+							<p className="vid-channel">{vid.snippet.channelTitle}</p>
+							<ul className="vid-stats">
+								<li>{parseInt(vid.statistics.viewCount).toLocaleString('en')} views</li>
+								<li>{timeSince(vid.snippet.publishedAt)}</li>
+							</ul>
+						</div>
+					);
+				})}
 			</div>
 		)
 	}

@@ -32,6 +32,9 @@ h3 {
   background-color: #262626;
   padding: 15px;
   border-radius: 10px;
+  margin-right: 10px;
+  margin-bottom: 12px;
+  vertical-align: top;
 }
 
 .vid-title{
@@ -62,4 +65,9 @@ h3 {
     content: "•";
     margin: 0 5px;
   }
+}
+
+.vid-grid {
+  display: flex;
+  flex-flow: row wrap;
 }
