@@ -1,5 +1,6 @@
 import React from 'react';
 import YouTube from 'react-youtube';
+import Buttons from  './Buttons';
 
 export default class Player extends React.Component {
 
@@ -20,12 +21,30 @@ export default class Player extends React.Component {
 		)
 	}
 
+	_onReady(event) {
+    // access to player in all event handlers via event.target 
+    event.target.pauseVideo();
+  }
+
 	render() {
+		const opts = {
+			playerVars: {
+        		autoplay: 1,
+        		iv_load_policy: 3,
+      			rel: 0,
+      			controls: 0,
+      			showinfo: 0,
+      			disablekb: 1,
+      			listType: "playlist"
+      	}}
 		return(
 			<div className="videowrapper">
 				<YouTube
-		        	videoId={this.state.id}		        	
+		        	videoId={this.state.id}	
+		        	opts={opts}	
+		        	onReady={this._onReady}        	
 		      	/>
+		      	<Buttons />
 		    </div>
 		)
 	}
