@@ -19,7 +19,7 @@ function Login() {
 function Menu() {
 	return (
 		<ul>
-			<li>Recommended</li>
+			<li>Trending</li>
 			<li>Trending</li>
 		</ul>
 	);
