@@ -1,21 +1,27 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import {HashRouter, Switch, Route, Redirect} from 'react-router-dom'
 import Header from './components/Header/Header';
 import Video from './components/Video/Video';
 import Player from './components/Player/Player';
 import {fetchVideo} from './actions/fetch';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 require('../styles/index.scss');
 
 
 ReactDOM.render(
-	<MuiThemeProvider>
 		<div>
-			<Header />
-			<Video /> 
+			<HashRouter>
+				<div>
+					<Route path='/' component={Header} />
+					<Switch>
+						<Route exact path='/' component={Video} />
+						<Route path='/video/:id' component={Player} />
+					</Switch>
+				</div>
+			</HashRouter> 
 		</div>
-	</MuiThemeProvider>
 	,
 	document.getElementById('app')
 );

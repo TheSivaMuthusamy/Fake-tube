@@ -1,11 +1,12 @@
 import React from 'react';
 import YouTube from 'react-youtube';
-import Buttons from  './Buttons';
+
+
 
 export default class Player extends React.Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			id: '',
 			windowHeight2x: window.innerHeight * 4,
@@ -14,17 +15,12 @@ export default class Player extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
-		.then(response => response.json())
-		.then(data =>
-		this.setState({id: data.items[0].id})
-		)
+		var final = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+		this.setState({
+			id: final
+		})
 	}
 
-	_onReady(event) {
-    // access to player in all event handlers via event.target 
-    event.target.pauseVideo();
-  }
 
 	render() {
 		const opts = {
@@ -41,10 +37,8 @@ export default class Player extends React.Component {
 			<div className="videowrapper">
 				<YouTube
 		        	videoId={this.state.id}	
-		        	opts={opts}	
-		        	onReady={this._onReady}        	
+		        	opts={opts}	       	
 		      	/>
-		      	<Buttons />
 		    </div>
 		)
 	}

@@ -1,6 +1,8 @@
 import React from 'react';
 import {timeSince} from '../../utils/utils';
-import Waypoint from 'react-waypoint'
+import Waypoint from 'react-waypoint';
+import {Link, Route} from 'react-router-dom';
+import Player from '../Player/Player';
 
 export default class Video extends React.Component {
 	constructor() {
@@ -42,8 +44,8 @@ export default class Video extends React.Component {
 				{this.state.vids.map((vid, key) =>  {
 					return (
 						<div className="vid" key={key}> 
-							<img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/>
-							<h3 className="vid-title">{vid.snippet.title}</h3>
+							<Link to={'/video/' + vid.id}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></Link>
+							<Link to={'/video/' + vid.id}><h3 className="vid-title">{vid.snippet.title}</h3></Link>
 							<p className="vid-channel">{vid.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<li>{parseInt(vid.statistics.viewCount).toLocaleString('en')} views</li>
@@ -52,10 +54,7 @@ export default class Video extends React.Component {
 						</div>
 					);
 				})}
-				        <Waypoint
-				          onEnter={this.infiniteLoad.bind(this)}
-				          threshold={2.0}
-				        />
+				<Waypoint onEnter={this.infiniteLoad.bind(this)} threshold={2.0} />
 			</div>
 		)
 	}
