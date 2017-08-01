@@ -18,6 +18,8 @@ ReactDOM.render(
 					<Switch>
 						<Route exact path='/' component={Video} />
 						<Route path='/video/:id' component={Player} />
+						<Route path='/search/:query' component={search} />
+						<Redirect to='/' />
 					</Switch>
 				</div>
 			</HashRouter> 

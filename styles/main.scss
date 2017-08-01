@@ -1,5 +1,5 @@
 body {
-  background-color: #111;
+  background-color: #141414;
   font: 400 13px "CoreSans", Arial,sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -34,12 +34,13 @@ h3 {
   max-width: 196px;
   line-height: 1.3em;
   font-size: 11px;
-  background-color: #262626;
+  background-color: #333;
   padding: 15px;
   border-radius: 10px;
   margin-right: 10px;
   margin-bottom: 12px;
   vertical-align: top;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
 }
 
 .vid-title{
@@ -51,6 +52,9 @@ h3 {
   text-overflow: ellipsis;
   white-space: normal;
   word-wrap: break-word;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 
 .vid-channel{

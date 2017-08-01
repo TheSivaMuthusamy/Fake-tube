@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import SearchBar from './SearchBar'
 
 function Logo() {
 	return (
 		<div>
-			<Link to='/'><h1>Electro-tube</h1></Link>
+			<Link to='/'><h1>Fake-tube</h1></Link>
 		</div>
 	);
 }
@@ -19,10 +20,9 @@ function Login() {
 
 function Menu() {
 	return (
-		<ul>
-			<li>Trending</li>
-			<li>Trending</li>
-		</ul>
+		<div className="search-bar">
+			<SearchBar />
+		</div>
 	);
 }
 
