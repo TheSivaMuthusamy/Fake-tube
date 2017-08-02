@@ -4,8 +4,7 @@ import JSONP from 'jsonp';
 
 const googleAutoSuggestURL = '//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=';
 
-export default class SearchBar extends React.Component {
-	
+export default class SearchBar extends React.Component {	
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,6 +13,8 @@ export default class SearchBar extends React.Component {
 		}
 		this.onHandleInput = this.onHandleInput.bind(this);
 		this.handleRenderItem = this.handleRenderItem.bind(this);
+		this.onSearch = this.onSearch.bind(this);
+		this._onKeyPress = this._onKeyPress.bind(this)
 	}
 
 	handleRenderItem(item, isHighlighted) {
@@ -72,6 +73,17 @@ export default class SearchBar extends React.Component {
 
 	onSearch(value) {
 		this.setState({inputValue: value})
+		const query = '/search/' + value.replace(/\s/g, '+');
+		this.props.history.push(query)
+	}
+
+	_onKeyPress(event) {
+		
+		if (event.keyCode == 13 && this.state.inputValue !== '' 
+			&& this.refs.search.state.highlightedIndex == null) {
+				this.onSearch(this.state.inputValue)
+		}
+
 	}
 
 	render() {
@@ -82,14 +94,16 @@ export default class SearchBar extends React.Component {
 		}
 		return (
 			<Autocomplete
+			ref = "search"
 			items = {this.state.data}
 			getItemValue = {(item) => item}
-			inputProps={{ placeholder: 'Search ...' }}
+			inputProps={{ placeholder: 'Search ...', onKeyDown: this._onKeyPress}}
 			value={this.state.inputValue}
 			onChange={this.onHandleInput}
-			onSelect={value => this.setState({ inputValue: value })}
+			onSelect={this.onSearch}
 			renderItem={this.handleRenderItem}
 			menuStyle= {menuStyle}
+			autoHighlight= {false}
 			/>
 		)
 	}

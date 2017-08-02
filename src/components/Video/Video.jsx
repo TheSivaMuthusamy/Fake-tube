@@ -26,8 +26,8 @@ export default class Video extends React.Component {
 	infiniteLoad() {
 		if (!this.state.loading && this.state.pageToken) {
 			this.setState({loading: true});
-			let currentVids = this.state.vids
-			fetch('https://www.googleapis.com/youtube/v3/videos?pageToken=' + this.state.pageToken + '&part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=40&regionCode=US&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
+			const currentVids = this.state.vids
+			fetch('https://www.googleapis.com/youtube/v3/videos?pageToken=' + this.state.pageToken + '&part=snippet%2Cstatistics&chart=mostPopular&maxResults=40&regionCode=US&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
 				.then(response => response.json())
 				.then(data =>
 				this.setState({vids: currentVids.concat(data.items),

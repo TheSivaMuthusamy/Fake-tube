@@ -18,12 +18,18 @@ function Login() {
 	)
 }
 
-function Menu() {
-	return (
-		<div className="search-bar">
-			<SearchBar />
-		</div>
-	);
+class Menu extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+	
+	render(){
+		return (
+			<div className="search-bar">
+				<SearchBar history={this.props.history} location={this.props.location}/>
+			</div>
+		);
+	}
 }
 
 export default class Header extends React.Component {
@@ -32,7 +38,7 @@ export default class Header extends React.Component {
 			<div className="header">
 				<div className="header-content">
 					<Logo />
-					<Menu />
+					<Menu history={this.props.history} location={this.props.location} />
 					<Login />
 				</div>
 			</div>

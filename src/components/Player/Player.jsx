@@ -5,8 +5,8 @@ import YouTube from 'react-youtube';
 
 export default class Player extends React.Component {
 
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.state = {
 			id: '',
 			windowHeight2x: window.innerHeight * 4,
@@ -15,7 +15,7 @@ export default class Player extends React.Component {
 	}
 
 	componentDidMount() {
-		var final = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+		const final = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
 		this.setState({
 			id: final
 		})

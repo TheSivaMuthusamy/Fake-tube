@@ -4,6 +4,7 @@ import {HashRouter, Switch, Route, Redirect} from 'react-router-dom'
 import Header from './components/Header/Header';
 import Video from './components/Video/Video';
 import Player from './components/Player/Player';
+import Search from './components/Search/Search'
 import {fetchVideo} from './actions/fetch';
 
 
@@ -18,7 +19,7 @@ ReactDOM.render(
 					<Switch>
 						<Route exact path='/' component={Video} />
 						<Route path='/video/:id' component={Player} />
-						<Route path='/search/:query' component={search} />
+						<Route path='/search/:query' component={Search} />
 						<Redirect to='/' />
 					</Switch>
 				</div>
