@@ -77,8 +77,7 @@ export default class SearchBar extends React.Component {
 		this.props.history.push(query)
 	}
 
-	_onKeyPress(event) {
-		
+	_onKeyPress(event) {		
 		if (event.keyCode == 13 && this.state.inputValue !== '' 
 			&& this.refs.search.state.highlightedIndex == null) {
 				this.onSearch(this.state.inputValue)
@@ -87,9 +86,7 @@ export default class SearchBar extends React.Component {
 	}
 
 	render() {
-		const menuStyle = {
-			border: '1px solid #404040',
-			postion: 'relative',
+		const menuStyle = {			
 			minWidth: '402px'
 		}
 		return (

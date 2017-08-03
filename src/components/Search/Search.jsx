@@ -90,7 +90,7 @@ export default class Search extends React.Component {
 					return (
 						<div className="result" key={key}>
 							<Link to={'/video/' + result.id.videoId}><img src={result.snippet.thumbnails.medium.url} className="result-thumbnail"/></Link>
-							<h3 className="result-title">{result.snippet.title}</h3>
+							<h3 className="result-title"><Link to={'/video/' + result.id.videoId}>{result.snippet.title}</Link></h3>
 							<p className="result-channel">{result.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<Views id={result.id.videoId}/>

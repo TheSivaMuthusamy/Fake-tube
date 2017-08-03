@@ -45,7 +45,7 @@ export default class Video extends React.Component {
 					return (
 						<div className="vid" key={key}> 
 							<Link to={'/video/' + vid.id}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></Link>
-							<Link to={'/video/' + vid.id}><h3 className="vid-title">{vid.snippet.title}</h3></Link>
+							<h3 className="vid-title"><Link to={'/video/' + vid.id}>{vid.snippet.title}</Link></h3>
 							<p className="vid-channel">{vid.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<li>{parseInt(vid.statistics.viewCount).toLocaleString('en')} views</li>
