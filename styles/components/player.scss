@@ -23,3 +23,18 @@
         margin: auto;
     }
 }
+
+.controls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.button-container {
+    font-size: 45px;
+    text-align: center;
+}
+
+
