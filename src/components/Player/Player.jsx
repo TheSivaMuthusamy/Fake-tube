@@ -2,7 +2,6 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import Buttons from './Buttons';
 import Slider from 'material-ui/Slider';
-import Button from 'react-md/lib/Buttons/Button';
 
 
 export default class Player extends React.Component {

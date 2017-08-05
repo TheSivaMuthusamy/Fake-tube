@@ -1,6 +1,6 @@
 # Electro-tube
 
-An ES6 React app that hooks into YouTube's api and allows one to search and watch videos. The default page is the most popular videos. A live version can be found [here](https://github-battle-4f22b.firebaseapp.com/)
+An ES6 React app that hooks into YouTube's api and allows one to search and watch videos. The default page is the most popular videos. Both the default page and the search page only have lazy loading at the moment. A live version can be found [here](https://fake-tube.firebaseapp.com/#/)
 
 ---
 

@@ -36,7 +36,8 @@ var config = {
   },
   devServer : {
     contentBase: './dist'
-  }
+  },
+  plugins: []
 };
 
 if(process.env.NODE_ENV === 'production') {

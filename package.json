@@ -36,7 +36,7 @@
     "start": "webpack-dev-server --open",
     "build": "webpack  --display-error-details",
     "production": "NODE_ENV='production' webpack -p",
-    "deploy:": "npm run production && firebase deploy",
+    "deploy": "npm run production && firebase deploy",
     "firebase-init": "firebase login && firebase init",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "eject": "react-scripts eject"
