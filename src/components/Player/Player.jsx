@@ -92,7 +92,8 @@ export default class Player extends React.Component {
       			controls: 0,
       			showinfo: 0,
       			disablekb: 0,
-      			listType: "playlist"
+      			listType: "playlist",
+
       	}}
 
       	const styles = {

@@ -4,7 +4,7 @@ import SearchBar from './SearchBar'
 
 function Logo() {
 	return (
-		<div>
+		<div className= "logo">
 			<Link to='/'><h1>Fake-tube</h1></Link>
 		</div>
 	);

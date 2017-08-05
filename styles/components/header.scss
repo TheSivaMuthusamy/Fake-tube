@@ -1,38 +1,42 @@
 .header{
 	background: #141414;
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100%;
-  height: 20px * 3;
-  border-bottom: 1px solid #3A3A3A;;
-  z-index: 1;
-  &-content {
-    position: relative;
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-    margin: 0 5px 0 5px;;
-  }
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 100%;
+	height: 20px * 3;
+	border-bottom: 1px solid #3A3A3A;;
+	z-index: 1;
+	&-content {
+		position: relative;
+		display: flex;
+		height: 100%;
+		justify-content: space-between;
+		margin: 0 5px 0 5px;;
+	}
 }
 
 .search-bar{
-  margin: 25px;
-  width: 400px;
-  div {
-    width: 100%;
-    input {
-      width: 100%;
-      background-color: #333;
-      border: 1px solid #444;
-      border-radius: 1px;
-      box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
-      color: #fff;
-      padding: 5px;
-      &:focus{
-        border: 1px solid #70d9ff;
-        outline: none;
-      }
-    }
-  }
+	margin: 25px;
+	width: 400px;
+	div {
+		width: 100%;
+		input {
+			width: 100%;
+			background-color: #333;
+			border: 1px solid #444;
+			border-radius: 1px;
+			box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+			color: #fff;
+			padding: 5px;
+			&:focus{
+				border: 1px solid #70d9ff;
+				outline: none;
+			}
+		}
+	}
+}
+
+.logo {
+	min-width: 125.16px;
 }
