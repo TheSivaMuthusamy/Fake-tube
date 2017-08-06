@@ -5,9 +5,10 @@ import Header from './components/Header/Header';
 import Video from './components/Video/Video';
 import Player from './components/Player/Player';
 import Search from './components/Search/Search'
-import {fetchVideo} from './actions/fetch';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import store from './stores/configureStore.js';
+import {Provider} from 'react-redux';
 
 require('../styles/index.scss');
 
@@ -21,21 +22,23 @@ const muiTheme = getMuiTheme({
 
 
 ReactDOM.render(
-		<MuiThemeProvider muiTheme={muiTheme}>
-			<div>
-				<HashRouter>
-					<div>
-						<Route path='/' component={Header} />
-						<Switch>
-							<Route exact path='/' component={Video} />
-							<Route path='/video/:id' component={Player} />
-							<Route path='/search/:query' component={Search} />
-							<Redirect to='/' />
-						</Switch>
-					</div>
-				</HashRouter> 
-			</div>
-		</MuiThemeProvider>
+		<Provider store={store}>
+			<MuiThemeProvider muiTheme={muiTheme}>
+				<div>
+					<HashRouter>
+						<div>
+							<Route path='/' component={Header} />
+							<Switch>
+								<Route exact path='/' component={Video} />
+								<Route path='/video/:id' component={Player} />
+								<Route path='/search/:query' component={Search} />
+								<Redirect to='/' />
+							</Switch>
+						</div>
+					</HashRouter> 
+				</div>
+			</MuiThemeProvider>
+		</Provider>
 	,
 	document.getElementById('app')
 );
