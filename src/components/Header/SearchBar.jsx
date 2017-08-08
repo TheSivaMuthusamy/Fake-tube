@@ -1,12 +1,14 @@
 import React from 'react';
 import Autocomplete from 'react-autocomplete';
 import JSONP from 'jsonp';
+import {push} from 'react-router-redux'
 
 const googleAutoSuggestURL = '//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=';
 
 export default class SearchBar extends React.Component {	
 	constructor(props) {
 		super(props);
+		this._onKeyPress = this._onKeyPress.bind(this)
 	}
 
 	handleRenderItem(item, isHighlighted) {
@@ -25,6 +27,7 @@ export default class SearchBar extends React.Component {
 				color: '#70d9ff',
 				overflow: 'hidden'
 			}
+			
 		};
 
 		return (
@@ -34,16 +37,11 @@ export default class SearchBar extends React.Component {
 		)
 	}
 
-	onSearch(value) {
-		this.setState({inputValue: value})
-		const query = '/search/' + value.replace(/\s/g, '+');
-		this.props.history.push(query)
-	}
-
 	_onKeyPress(event) {		
-		if (event.keyCode == 13 && this.state.inputValue !== '' 
+		if (event.keyCode == 13 && this.props.inputValue !== '' 
 			&& this.refs.search.state.highlightedIndex == null) {
-				this.onSearch(this.props.inputValue)
+				const query = '/search/' + this.props.inputValue.replace(/\s/g, '+');
+				this.props.goto(query)
 		}
 
 	}
@@ -60,7 +58,7 @@ export default class SearchBar extends React.Component {
 			inputProps={{ placeholder: 'Search ...', onKeyDown: this._onKeyPress}}
 			value={this.props.inputValue}
 			onChange={this.props.onChange}
-			onSelect={this.onSearch}
+			onSelect={this.props.onSearch}
 			renderItem={this.handleRenderItem}
 			menuStyle= {menuStyle}
 			autoHighlight= {false}

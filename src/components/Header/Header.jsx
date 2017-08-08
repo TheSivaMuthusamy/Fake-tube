@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/header';
+import { push } from 'react-router-redux';
 
 function Logo() {
 	return (
@@ -31,9 +32,11 @@ class Menu extends React.Component {
 			<div className="search-bar">
 				<SearchBar inputValue={this.props.inputValue}
 					onChange={this.props.onChange}
+					onSearch={this.props.onSearch}
 					data={this.props.data}
 					history={this.props.history} 
-					location={this.props.location}/>
+					location={this.props.location}
+					goto = {this.props.goto}/>
 			</div>
 		);
 	}
@@ -47,9 +50,11 @@ class Header extends React.Component {
 					<Logo />
 					<Menu inputValue={this.props.inputValue}
 					onChange={this.props.onChange}
+					onSearch={this.props.onSearch}
 					data={this.props.data}
 					history={this.props.history} 
-					location={this.props.location} />
+					location={this.props.location}
+					goto = {this.props.goto} />
 					<Login />
 				</div>
 			</div>
@@ -66,7 +71,9 @@ function mapStatetoProps(state) {
 
 function mapDispatchtoProps(dispatch) {
 	return {
-		onChange: bindActionCreators(actions.onChange, dispatch)
+		onChange: bindActionCreators(actions.onChange, dispatch),
+		onSearch: bindActionCreators(actions.onSearch, dispatch),
+		goto: function(path) { dispatch( push(path) ) }
 	}
 }
 

@@ -1,4 +1,5 @@
 import AppConstants  from '../constants/AppConstants';
+import {push} from 'react-router-redux';
 import fetchJsonp from 'fetch-jsonp'
 
 function getInput(event) {
@@ -47,5 +48,19 @@ function getSuggestions(event) {
 	}
 }
 
+export function onSearch(value) {
+	return function (dispatch) {
+		const query = '/search/' + value.replace(/\s/g, '+');
+		dispatch(push(query))
+		dispatch(setValue(value))
+	}
+}
 
+
+function setValue(value) {
+	return {
+		type: AppConstants.SET_VALUE,
+		value
+	}
+}
 
