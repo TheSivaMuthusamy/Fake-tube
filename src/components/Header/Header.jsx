@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from '../../actions/header';
 
 function Logo() {
 	return (
@@ -26,22 +29,45 @@ class Menu extends React.Component {
 	render(){
 		return (
 			<div className="search-bar">
-				<SearchBar history={this.props.history} location={this.props.location}/>
+				<SearchBar inputValue={this.props.inputValue}
+					onChange={this.props.onChange}
+					data={this.props.data}
+					history={this.props.history} 
+					location={this.props.location}/>
 			</div>
 		);
 	}
 }
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 	render() {
 		return (
 			<div className="header">
 				<div className="header-content">
 					<Logo />
-					<Menu history={this.props.history} location={this.props.location} />
+					<Menu inputValue={this.props.inputValue}
+					onChange={this.props.onChange}
+					data={this.props.data}
+					history={this.props.history} 
+					location={this.props.location} />
 					<Login />
 				</div>
 			</div>
 		)
 	}
 }
+
+function mapStatetoProps(state) {
+	return {
+		inputValue: state.app.inputValue,
+		data: state.app.data
+	}
+}
+
+function mapDispatchtoProps(dispatch) {
+	return {
+		onChange: bindActionCreators(actions.onChange, dispatch)
+	}
+}
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(Header)

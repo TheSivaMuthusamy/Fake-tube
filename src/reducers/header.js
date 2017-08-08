@@ -2,9 +2,14 @@ import AppConstants from '../constants/AppConstants'
 
 export default(state ={}, action) => {
 	switch (action.type) {
-		case(AppConstants.SEARCH_INPUT): {
-			const query = action.event.target.value;
-			const googleAutoSuggestURL = '//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=';
+		case(AppConstants.GET_INPUT): {
+			return state.set('app', inputValue: action.event.target.value)
+		}
+		case(AppConstants.SET_SUGGESTIONS): {
+			return state.set('app', data: action.data)			
+		}
+		default: {
+			return state
 		}
 	}
 }

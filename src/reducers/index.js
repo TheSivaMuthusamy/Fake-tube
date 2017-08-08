@@ -3,9 +3,7 @@ import player from './player';
 import video from './video';
 
 const reducers = [
-	header,
-	player,
-	video
+	header
 ]
 
 export default (state, action) => {

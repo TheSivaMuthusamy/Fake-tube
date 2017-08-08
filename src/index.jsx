@@ -9,6 +9,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import store from './stores/configureStore.js';
 import {Provider} from 'react-redux';
+import createHistory from 'history/createHashHistory';
+import {ConnectedRouter, push} from 'react-router-redux'
 
 require('../styles/index.scss');
 
@@ -20,12 +22,15 @@ const muiTheme = getMuiTheme({
   }
 });
 
+console.log(store.getState())
+
+const history = createHistory()
 
 ReactDOM.render(
 		<Provider store={store}>
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<div>
-					<HashRouter>
+					<ConnectedRouter history={history}>
 						<div>
 							<Route path='/' component={Header} />
 							<Switch>
@@ -35,7 +40,7 @@ ReactDOM.render(
 								<Redirect to='/' />
 							</Switch>
 						</div>
-					</HashRouter> 
+					</ConnectedRouter> 
 				</div>
 			</MuiThemeProvider>
 		</Provider>

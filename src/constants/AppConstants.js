@@ -1,7 +1,8 @@
 import keymirror from 'keymirror';
 
 export default keymirror({
-	SEARCH_INPUT: null,
+	GET_INPUT: null,
+	SET_SUGGESTIONS: null,
 	SEARCH_QUERY: null,
 	SEARCH_ENTER: null,
 

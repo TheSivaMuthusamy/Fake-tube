@@ -7,14 +7,6 @@ const googleAutoSuggestURL = '//suggestqueries.google.com/complete/search?client
 export default class SearchBar extends React.Component {	
 	constructor(props) {
 		super(props);
-		this.state = {
-			inputValue: '',
-			data: [],
-		}
-		this.onHandleInput = this.onHandleInput.bind(this);
-		this.handleRenderItem = this.handleRenderItem.bind(this);
-		this.onSearch = this.onSearch.bind(this);
-		this._onKeyPress = this._onKeyPress.bind(this)
 	}
 
 	handleRenderItem(item, isHighlighted) {
@@ -42,35 +34,6 @@ export default class SearchBar extends React.Component {
 		)
 	}
 
-	onHandleInput(event) {
-		const query = event.target.value
-		const self = this
-		const url  = googleAutoSuggestURL + query;
-
-		this.setState({
-			inputValue: event.target.value
-		})
-
-		if(query !== '') {
-			JSONP(url, function(error, data) {
-				var searchResults, retrievedSearchTerms;
-				
-				if(error) return error;
-
-				searchResults = data[1];
-
-				retrievedSearchTerms = searchResults.map(function(result) {
-					return result[0];
-				});
-
-				self.setState({
-					data: retrievedSearchTerms
-				});
-			});
-		};
-
-	}
-
 	onSearch(value) {
 		this.setState({inputValue: value})
 		const query = '/search/' + value.replace(/\s/g, '+');
@@ -80,7 +43,7 @@ export default class SearchBar extends React.Component {
 	_onKeyPress(event) {		
 		if (event.keyCode == 13 && this.state.inputValue !== '' 
 			&& this.refs.search.state.highlightedIndex == null) {
-				this.onSearch(this.state.inputValue)
+				this.onSearch(this.props.inputValue)
 		}
 
 	}
@@ -92,11 +55,11 @@ export default class SearchBar extends React.Component {
 		return (
 			<Autocomplete
 			ref = "search"
-			items = {this.state.data}
+			items = {this.props.data}
 			getItemValue = {(item) => item}
 			inputProps={{ placeholder: 'Search ...', onKeyDown: this._onKeyPress}}
-			value={this.state.inputValue}
-			onChange={this.onHandleInput}
+			value={this.props.inputValue}
+			onChange={this.props.onChange}
 			onSelect={this.onSearch}
 			renderItem={this.handleRenderItem}
 			menuStyle= {menuStyle}
