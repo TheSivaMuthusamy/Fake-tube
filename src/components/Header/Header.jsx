@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/header';
-import { push } from 'react-router-redux';
+import {push} from 'react-router-redux';
 
 function Logo() {
 	return (

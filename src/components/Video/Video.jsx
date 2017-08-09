@@ -3,45 +3,34 @@ import {timeSince} from '../../utils/utils';
 import Waypoint from 'react-waypoint';
 import {Link, Route} from 'react-router-dom';
 import Player from '../Player/Player';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from '../../actions/video';
 
-export default class Video extends React.Component {
+class Video extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			vids: [],
 			loading: false,
 		}
 	}
 
 	componentDidMount() {
-		fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=40&regionCode=US&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
-			.then(response => response.json())
-			.then(data => 
-			this.setState({vids: data.items,
-							pageToken: data.nextPageToken
-			})
-		)
+		this.props.fetchVideos()
 	}
 
 	infiniteLoad() {
-		if (!this.state.loading && this.state.pageToken) {
+		if (!this.state.loading && this.props.pageToken) {
 			this.setState({loading: true});
-			const currentVids = this.state.vids
-			fetch('https://www.googleapis.com/youtube/v3/videos?pageToken=' + this.state.pageToken + '&part=snippet%2Cstatistics&chart=mostPopular&maxResults=40&regionCode=US&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
-				.then(response => response.json())
-				.then(data =>
-				this.setState({vids: currentVids.concat(data.items),
-								pageToken: data.nextPageToken,
-								loading: false
-				})
-			)
+			this.props.fetchVideos(this.props.pageToken)
+			this.setState({loading: false})
 		}
 	}
 
 	render() {
 		return (
 			<div className="vid-grid">
-				{this.state.vids.map((vid, key) =>  {
+				{this.props.videos.map((vid, key) =>  {
 					return (
 						<div className="vid" key={key}> 
 							<Link to={'/video/' + vid.id}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></Link>
@@ -59,3 +48,18 @@ export default class Video extends React.Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		videos: state.app.videos.grid,
+		pageToken: state.app.pageToken.grid
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		fetchVideos: bindActionCreators(actions.fetchVideos, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Video)

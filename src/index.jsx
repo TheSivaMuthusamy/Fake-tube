@@ -22,8 +22,6 @@ const muiTheme = getMuiTheme({
   }
 });
 
-console.log(store.getState())
-
 const history = createHistory()
 
 ReactDOM.render(

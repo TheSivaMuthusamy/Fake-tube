@@ -4,8 +4,8 @@ export default keymirror({
 	GET_INPUT: null,
 	SET_SUGGESTIONS: null,
 	SET_VALUE: null,
-	SEARCH_QUERY: null,
-	SEARCH_ENTER: null,
+
+	SET_VIDEOS: null,
 
 	PLAYER_PLAY: null,
 	PLAYER_PAUSE: null,

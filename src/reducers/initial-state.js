@@ -13,7 +13,9 @@ export default{
         	search: [],
         	grid: [] 
         },
-        loading: false,
-        pageToken: '',
+        pageToken: {
+            search: '',
+            grid: ''
+        },
     }    
 }
