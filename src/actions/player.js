@@ -29,22 +29,22 @@ export function onPlayerStateChange(event) {
 	} else {
 		clearInterval(setPlayerTimer)
 		return dispatch => {
-			dispatch(clearInterval())
+			dispatch(treadWater())
 		}
 	}
 }
 
-function clearInterval() {
-	return {
-		type: clearInterval
-	}
-}
-
-function playerOnTimeAsync(time = 1000) {
+function playerOnTimeAsync(time = 100) {
 	return dispatch => {
 		setPlayerTimer=setInterval(() => {
 			dispatch(playerTime())
 		}, time)
+	}
+}
+
+function treadWater() {
+	return {
+		type: treadWater
 	}
 }
 
@@ -71,8 +71,6 @@ export function togglePlay(event) {
 
 export function clearTime() {
 	clearInterval(setPlayerTimer)
-	setPlayerTimer = false;
-	console.log(setPlayerTimer)
 	return {
 		type: AppConstants.CLEAR_TIME
 	}

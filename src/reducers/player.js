@@ -49,7 +49,6 @@ export default(state ={}, action) => {
 		    }
 		}
 		case(AppConstants.CLEAR_TIME): {
-			console.log(state.difference)
 			return {
 		    		...state,
 		    		difference: 0,

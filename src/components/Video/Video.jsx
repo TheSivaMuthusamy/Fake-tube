@@ -6,7 +6,6 @@ import Player from '../Player/Player';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/video';
-import {clearTime} from '../../actions/player'
 
 class Video extends React.Component {
 	constructor() {
@@ -18,7 +17,6 @@ class Video extends React.Component {
 
 	componentDidMount() {
 		this.props.fetchVideos()
-		this.props.clearTime()
 	}
 
 	infiniteLoad() {
@@ -55,14 +53,12 @@ function mapStateToProps(state) {
 	return {
 		videos: state.app.videos.grid,
 		pageToken: state.app.pageToken.grid,
-		difference: state.app.difference,
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		fetchVideos: bindActionCreators(actions.fetchVideos, dispatch),
-		clearTime: bindActionCreators(clearTime, dispatch)
 	}
 }
 

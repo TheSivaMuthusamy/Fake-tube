@@ -4,7 +4,6 @@ import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/search';
-import {clearTime} from '../../actions/player'
 import Waypoint from 'react-waypoint';
 
 
@@ -47,7 +46,6 @@ class Search extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.clearTime()
 		if (this.props.value == '') {
 			const unfiltered = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
 			const filtered = unfiltered.replace(/\+/g, " ")
@@ -100,7 +98,6 @@ function mapStateToProps(state) {
 		videos: state.app.videos.search,
 		pageToken: state.app.pageToken.search,
 		value: state.app.searchValue,
-		difference: state.app.difference
 	}
 }
 
@@ -108,7 +105,6 @@ function mapDispatchToProps(dispatch) {
 	return {
 		fetchSearch: bindActionCreators(actions.fetchSearch, dispatch),
 		fetchNewSearch: bindActionCreators(actions.fetchNewSearch, dispatch),
-		clearTime: bindActionCreators(clearTime, dispatch)
 	}
 }
 

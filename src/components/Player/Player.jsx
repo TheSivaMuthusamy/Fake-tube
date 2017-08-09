@@ -48,6 +48,7 @@ class Player extends React.Component {
       		height: '10px',
       		borderRadius: '30px'
       	}
+      	
 		return(
 			<div className="videowrapper">
 				<YouTube

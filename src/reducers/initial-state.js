@@ -6,7 +6,7 @@ export default{
     	playing: false,
         player: null,
     	id: '',
-        difference: 10,
+        difference: 0,
         videos: {
         	search: [],
         	grid: [] 
