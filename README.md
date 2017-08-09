@@ -13,7 +13,6 @@ An ES6 React app that hooks into YouTube's api and allows one to search and watc
 
 ### To-Do
 
-- Redux
 - UI Overhall
 - Electron
 - Oauth
