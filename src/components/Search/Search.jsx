@@ -4,6 +4,7 @@ import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/search';
+import {clearTime} from '../../actions/player'
 import Waypoint from 'react-waypoint';
 
 
@@ -46,17 +47,19 @@ class Search extends React.Component {
 	}
 
 	componentDidMount() {
+		this.props.clearTime()
 		if (this.props.value == '') {
-			const query = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
-			this.props.fetchNewSearch(query)
+			const unfiltered = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+			const filtered = unfiltered.replace(/\+/g, " ")
+			this.props.fetchNewSearch(filtered)
 		} else {
 			this.props.fetchNewSearch(this.props.value)	
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.location.pathname !== this.props.location.pathname) {
-			const nextQuery = nextProps.location.pathname
+		if(nextProps.value !== this.props.value) {
+			const nextQuery = nextProps.value
 			this.props.fetchNewSearch(nextQuery)
 		}
 	}
@@ -96,14 +99,16 @@ function mapStateToProps(state) {
 	return {
 		videos: state.app.videos.search,
 		pageToken: state.app.pageToken.search,
-		value: state.app.searchValue
+		value: state.app.searchValue,
+		difference: state.app.difference
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		fetchSearch: bindActionCreators(actions.fetchSearch, dispatch),
-		fetchNewSearch: bindActionCreators(actions.fetchNewSearch, dispatch)
+		fetchNewSearch: bindActionCreators(actions.fetchNewSearch, dispatch),
+		clearTime: bindActionCreators(clearTime, dispatch)
 	}
 }
 

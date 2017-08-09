@@ -6,15 +6,16 @@ export default keymirror({
 	SET_VALUE: null,
 
 	SET_VIDEOS: null,
+	SET_ID: null,
 
 	SET_SEARCH: null,
 	MORE_ITEMS: null,
 
+	PLAYER_ON_READY: null,
 	PLAYER_PLAY: null,
 	PLAYER_PAUSE: null,
 	PLAYER_TIME: null,
-	PLAYER_SLIDER_CLICK: null,
+	TOGGLE_PLAY: null,
 	PLAYER_SEEK_TO: null,
-
-
+	CLEAR_TIME: null
 })

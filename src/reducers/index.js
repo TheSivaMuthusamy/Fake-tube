@@ -6,7 +6,8 @@ import search from './search'
 const reducers = [
 	header,
 	video,
-	search
+	search,
+	player
 ]
 
 export default (state, action) => {
