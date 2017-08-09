@@ -1,6 +1,9 @@
 import React from 'react';
 import {timeSince} from '../../utils/utils';
 import {Link, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from '../../actions/search';
 import Waypoint from 'react-waypoint';
 
 
@@ -34,59 +37,42 @@ class Views extends React.Component {
 
 }
 
-export default class Search extends React.Component {
-	constructor() {
-		super()
+class Search extends React.Component {
+	constructor(props) {
+		super(props)
 		this.state = {
-			results: [],
 			loading: false
 		}
 	}
 
 	componentDidMount() {
-		const query = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
-		fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=' + query + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
-			.then(response => response.json())
-			.then(data => 
-			this.setState({results: data.items,
-							pageToken: data.nextPageToken
-			})
-		)
+		if (this.props.value == '') {
+			const query = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+			this.props.fetchNewSearch(query)
+		} else {
+			this.props.fetchNewSearch(this.props.value)	
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.location.pathname !== this.props.location.pathname) {
-			const nextQuery = nextProps.location.pathname.substr(nextProps.location.pathname.lastIndexOf('/') + 1);
-			fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=' + nextQuery + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
-			.then(response => response.json())
-			.then(data => 
-			this.setState({results: data.items,
-							pageToken: data.nextPageToken
-			})
-		)
+			const nextQuery = nextProps.location.pathname
+			this.props.fetchNewSearch(nextQuery)
 		}
 	}
 
 	infiniteLoad() {
-		if (!this.state.loading && this.state.pageToken) {
+		if (!this.state.loading && this.props.pageToken) {
 			this.setState({loading: true});
-			const currentQuery = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
-			const currentResults = this.state.results
-			fetch('https://www.googleapis.com/youtube/v3/search?pageToken=' + this.state.pageToken + '&part=snippet&maxResults=20&q=' + currentQuery + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
-				.then(response => response.json())
-				.then(data =>
-				this.setState({results: currentResults.concat(data.items),
-								pageToken: data.nextPageToken,
-								loading: false
-				})
-			)
+			this.props.fetchSearch(this.props.value, this.props.pageToken)
+			this.setState({loading: false})
 		}
 	}
 
 	render() {
 		return(
 			<div className="results-list">
-				{this.state.results.map((result, key) => {
+				{this.props.videos.map((result, key) => {
 					return (
 						<div className="result" key={key}>
 							<Link to={'/video/' + result.id.videoId}><img src={result.snippet.thumbnails.medium.url} className="result-thumbnail"/></Link>
@@ -105,3 +91,20 @@ export default class Search extends React.Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		videos: state.app.videos.search,
+		pageToken: state.app.pageToken.search,
+		value: state.app.searchValue
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		fetchSearch: bindActionCreators(actions.fetchSearch, dispatch),
+		fetchNewSearch: bindActionCreators(actions.fetchNewSearch, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)

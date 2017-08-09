@@ -57,7 +57,7 @@ export function onSearch(value) {
 }
 
 
-function setValue(value) {
+export function setValue(value) {
 	return {
 		type: AppConstants.SET_VALUE,
 		value

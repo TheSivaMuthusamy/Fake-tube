@@ -17,7 +17,8 @@ export default(state ={}, action) => {
 		case(AppConstants.SET_VALUE) : {
 			return {
 				...state,
-				inputValue: action.value
+				inputValue: action.value,
+				searchValue: action.value
 			}
 		}
 		default: {

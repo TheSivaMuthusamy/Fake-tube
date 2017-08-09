@@ -7,6 +7,9 @@ export default keymirror({
 
 	SET_VIDEOS: null,
 
+	SET_SEARCH: null,
+	MORE_ITEMS: null,
+
 	PLAYER_PLAY: null,
 	PLAYER_PAUSE: null,
 	PLAYER_TIME: null,

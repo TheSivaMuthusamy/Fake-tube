@@ -1,10 +1,12 @@
 import header from './header';
 import player from './player';
 import video from './video';
+import search from './search'
 
 const reducers = [
 	header,
-	video
+	video,
+	search
 ]
 
 export default (state, action) => {

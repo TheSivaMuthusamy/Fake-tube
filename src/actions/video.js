@@ -1,6 +1,6 @@
 import AppConstants from '../constants/AppConstants'
 
-function setVideos(data) {
+export function setVideos(data) {
 	return {
 		type: AppConstants.SET_VIDEOS,
 		data

@@ -1,6 +1,8 @@
 export default{
     app : {
     	inputValue: '',
+        searchValue: '',
+        etag: '',
     	data: [],
     	playing: false,
         player: null,
@@ -8,7 +10,6 @@ export default{
     	windowHeight2x: window.innerHeight * 4,
         playerCenterTop: (window.innerHeight * 4) / 2.665,
         difference: 0,
-        viewCount: '',
         videos: {
         	search: [],
         	grid: [] 

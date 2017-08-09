@@ -40,8 +40,7 @@ export default class SearchBar extends React.Component {
 	_onKeyPress(event) {		
 		if (event.keyCode == 13 && this.props.inputValue !== '' 
 			&& this.refs.search.state.highlightedIndex == null) {
-				const query = '/search/' + this.props.inputValue.replace(/\s/g, '+');
-				this.props.goto(query)
+				this.props.onSearch(this.props.inputValue)
 		}
 
 	}
