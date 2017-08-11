@@ -60,7 +60,7 @@ class Player extends React.Component {
 			        	onStateChange={this.props.onPlayerStateChange}	       	
 			      	/>
 			     <div className="controls">
-					<Slider min={0} max={100} value={this.props.difference} onChange={this.props.seekTo} defaultValue={0} style={styles}/>
+					<Slider min={0} max={100} value={this.props.difference} onChange={this.props.seekTo} style={styles}/>
 			      	<Buttons playing={this.props.playing} onClick={this.props.togglePlay} />
 			      </div>
 		    </div>
