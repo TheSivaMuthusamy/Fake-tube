@@ -10,6 +10,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import store from './stores/configureStore.js';
 import {Provider} from 'react-redux';
 import createHistory from 'history/createHashHistory';
+import Dashboard from './components/Dashboard/Dashboard'
 import {ConnectedRouter, push} from 'react-router-redux'
 
 require('../styles/index.scss');
@@ -30,7 +31,7 @@ ReactDOM.render(
 				<div>
 					<ConnectedRouter history={history}>
 						<div>
-							<Route path='/' component={Header} />
+							<Route path='/' component={Dashboard} />
 							<Switch>
 								<Route exact path='/' component={Video} />
 								<Route path='/video/:id' component={Player} />

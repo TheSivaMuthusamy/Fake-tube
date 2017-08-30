@@ -5,23 +5,29 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/header';
 import {push} from 'react-router-redux';
 
+
+
 class Dashboard extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	render() {
-		<li className="dashboard">
-			<ul>
-				<SearchBar inputValue={this.props.inputValue}
-						onChange={this.props.onChange}
-						onSearch={this.props.onSearch}
-						data={this.props.data}
-						history={this.props.history} 
-						location={this.props.location}
-						goto = {this.props.goto}/>
+		return (
+			<ul className="dashboard">
+				<li className="logo">Fake-tube</li>
+				<li className="search-bar">
+					<SearchBar inputValue={this.props.inputValue}
+							onChange={this.props.onChange}
+							onSearch={this.props.onSearch}
+							data={this.props.data}
+							history={this.props.history} 
+							location={this.props.location}
+							goto = {this.props.goto}/>
+				</li>
+				<li className="categories">Most popular</li>
 			</ul>
-		</li>
+		)
 	}
 }
 
@@ -40,4 +46,4 @@ function mapDispatchtoProps(dispatch) {
 	}
 }
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(Header)
+export default connect(mapStatetoProps, mapDispatchtoProps)(Dashboard)

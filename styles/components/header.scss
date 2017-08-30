@@ -16,26 +16,6 @@
 	}
 }
 
-.search-bar{
-	margin: 25px;
-	width: 400px;
-	div {
-		width: 100%;
-		input {
-			width: 100%;
-			background-color: #333;
-			border: 1px solid #444;
-			border-radius: 1px;
-			box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
-			color: #fff;
-			padding: 5px;
-			&:focus{
-				border: 1px solid #70d9ff;
-				outline: none;
-			}
-		}
-	}
-}
 
 .logo {
 	min-width: 125.16px;
