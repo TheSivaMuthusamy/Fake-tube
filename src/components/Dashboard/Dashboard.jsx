@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
 	render() {
 		return (
 			<ul className="dashboard">
-				<li className="logo">Fake-tube</li>
+				<li className="logo"><h1>Fake-tube</h1></li>
 				<li className="search-bar">
 					<SearchBar inputValue={this.props.inputValue}
 							onChange={this.props.onChange}
