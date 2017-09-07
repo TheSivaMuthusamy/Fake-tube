@@ -86,3 +86,11 @@ h3 {
   margin-left: 265px;
   transition: 0.2s;
 }
+
+.vid-grid-hidden {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-left: 0px;
+  transition: 0.2s;
+}

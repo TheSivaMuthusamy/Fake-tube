@@ -17,5 +17,8 @@ export default keymirror({
 	PLAYER_TIME: null,
 	TOGGLE_PLAY: null,
 	PLAYER_SEEK_TO: null,
-	CLEAR_TIME: null
+	CLEAR_TIME: null,
+
+	HIDE_DASH: null,
+	REVEAL_DASH: null,
 })

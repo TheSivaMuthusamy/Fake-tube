@@ -8,13 +8,39 @@
 	transition: 0.2s;
 	left: 0;
 	top: 0;
+	&-hidden {
+		left: -300px;
+		top: 0;
+		position: fixed;
+		height: 100%;
+		width: 300px;
+		border-right: 1px white;
+		background-color: #333;
+		z-index: 1;
+		transition: 0.2s;
+	}
 }
+
+
 
 .logo{
 	h1 {
 		display: inline-block;
     	margin-right: 130px;
 	}
+	svg {
+		&:hover{
+            color: #70d9ff;
+        }
+	}
+}
+
+.revealButton {
+	position: fixed;
+	top: 10px;
+	&:hover{
+        color: #70d9ff;
+    }
 }
 
 .search-bar{

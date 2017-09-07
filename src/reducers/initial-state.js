@@ -15,5 +15,6 @@ export default{
             search: '',
             grid: ''
         },
+        visible: true,
     }    
 }
