@@ -7,6 +7,14 @@
 	z-index: 1;
 	transition: 0.2s;
 	left: 0;
+	top: 0;
+}
+
+.logo{
+	h1 {
+		display: inline-block;
+    	margin-right: 130px;
+	}
 }
 
 .search-bar{
