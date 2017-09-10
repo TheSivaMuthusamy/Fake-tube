@@ -48,9 +48,11 @@ class Player extends React.Component {
       		height: '10px',
       		borderRadius: '30px'
       	}
+
+      	const cn = (this.props.visible) ? 'videowrapper' : 'wrapperhidden'
       	
 		return(
-			<div className="videowrapper">
+			<div className={cn}>
 				<YouTube
 			        	videoId={this.state.id}	
 			        	opts={opts}
@@ -71,7 +73,8 @@ class Player extends React.Component {
 function mapStateToProps(state) {
 	return {
 		playing: state.app.playing,
-		difference: state.app.difference
+		difference: state.app.difference,
+		visible: state.app.visible
 	}
 }
 

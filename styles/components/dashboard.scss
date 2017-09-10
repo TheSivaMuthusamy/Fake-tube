@@ -38,8 +38,11 @@
 .revealButton {
 	position: fixed;
 	top: 10px;
+	left: -20px;
+	transition: 0.1s;
 	&:hover{
         color: #70d9ff;
+        left: -1px;
     }
 }
 
