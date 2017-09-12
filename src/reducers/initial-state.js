@@ -16,5 +16,6 @@ export default{
             grid: ''
         },
         visible: true,
+        category: '0',
     }    
 }

@@ -6,6 +6,7 @@ export default keymirror({
 	SET_VALUE: null,
 
 	SET_VIDEOS: null,
+	SWITCH_VIDEOS: null,
 	SET_ID: null,
 
 	SET_SEARCH: null,
@@ -21,4 +22,6 @@ export default keymirror({
 
 	HIDE_DASH: null,
 	REVEAL_DASH: null,
+
+	SET_CATEGORY: null
 })

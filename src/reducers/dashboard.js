@@ -14,6 +14,25 @@ export default(state ={}, action) => {
 				visible: true
 			}
 		}
+		case(AppConstants.SET_CATEGORY): {
+			return {
+				...state,
+				category: action.value
+			}
+		}
+		case(AppConstants.SWITCH_VIDEOS): {
+			return {
+				...state,
+				videos: {
+					...state.videos,
+					grid: action.data.items
+				},
+				pageToken: {
+					...state.pageToken,
+					grid: action.data.nextPageToken
+				}
+			}
+		}
 		default: {
 			return state
 		}

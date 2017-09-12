@@ -25,14 +25,19 @@ class Dashboard extends React.Component {
 					<FaArrowCircleOLeft size={40} style={{verticalAlign: '-0.9em'}} onClick={this.props.hideDash}/>
 					</li>
 					<li className="search-bar">
-						<SearchBar inputValue={this.props.inputValue}
-								onChange={this.props.onChange}
-								onSearch={this.props.onSearch}
-								data={this.props.data}
+						<SearchBar 
 								history={this.props.history} 
 								location={this.props.location}
 								goto = {this.props.goto}/>
 					</li>
+					<li className="categories" onClick={() => this.props.changeCategory('0')}>Most Popular</li>
+					<li className="categories" onClick={() => this.props.changeCategory('27')}>Education</li>
+					<li className="categories" onClick={() => this.props.changeCategory('17')}>Sports</li>
+					<li className="categories" onClick={() => this.props.changeCategory('28')}>Technology</li>
+					<li className="categories" onClick={() => this.props.changeCategory('23')}>Comedy</li>
+					<li className="categories" onClick={() => this.props.changeCategory('10')}>Music</li>
+					<li className="categories" onClick={() => this.props.changeCategory('20')}>Gaming</li>
+					<hr/>
 				</ul>
 			</div>
 		)
@@ -53,6 +58,7 @@ function mapDispatchtoProps(dispatch) {
 		onSearch: bindActionCreators(headerActions.onSearch, dispatch),
 		hideDash: bindActionCreators(actions.hideDash, dispatch),
 		revealDash: bindActionCreators(actions.revealDash, dispatch),
+		changeCategory: bindActionCreators(actions.changeCategory, dispatch),
 		goto: function(path) { dispatch( push(path) ) }
 	}
 }

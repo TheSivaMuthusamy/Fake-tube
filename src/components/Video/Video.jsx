@@ -16,13 +16,13 @@ class Video extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchVideos()
+		this.props.fetchVideos(this.props.category)
 	}
 
 	infiniteLoad() {
 		if (!this.state.loading && this.props.pageToken) {
 			this.setState({loading: true});
-			this.props.fetchVideos(this.props.pageToken)
+			this.props.fetchVideos(this.props.category, this.props.pageToken)
 			this.setState({loading: false})
 		}
 	}
@@ -54,7 +54,8 @@ function mapStateToProps(state) {
 	return {
 		videos: state.app.videos.grid,
 		pageToken: state.app.pageToken.grid,
-		visible: state.app.visible
+		visible: state.app.visible,
+		category: state.app.category
 	}
 }
 

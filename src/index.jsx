@@ -10,8 +10,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import store from './stores/configureStore.js';
 import {Provider} from 'react-redux';
 import createHistory from 'history/createHashHistory';
-import Dashboard from './components/Dashboard/Dashboard'
-import {ConnectedRouter, push} from 'react-router-redux'
+import Dashboard from './components/Dashboard/Dashboard';
+import {ConnectedRouter, push} from 'react-router-redux';
+import SearchBar from './components/Header/SearchBar';
 
 require('../styles/index.scss');
 
@@ -31,6 +32,7 @@ ReactDOM.render(
 				<div>
 					<ConnectedRouter history={history}>
 						<div>
+							<Route path ='/' component={SearchBar} />
 							<Route path='/' component={Dashboard} />
 							<Switch>
 								<Route exact path='/' component={Video} />

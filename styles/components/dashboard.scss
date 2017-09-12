@@ -65,3 +65,12 @@
 		}
 	}
 }
+
+.categories{
+	margin-right: 24px;
+	&:hover{
+		background-color: #70d9ff;
+		color: #fff;
+	}
+}
+

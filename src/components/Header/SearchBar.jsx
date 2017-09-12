@@ -1,11 +1,14 @@
 import React from 'react';
 import Autocomplete from 'react-autocomplete';
 import JSONP from 'jsonp';
-import {push} from 'react-router-redux'
+import {push} from 'react-router-redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from '../../actions/header';
 
 const googleAutoSuggestURL = '//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=';
 
-export default class SearchBar extends React.Component {	
+class SearchBar extends React.Component {	
 	constructor(props) {
 		super(props);
 		this._onKeyPress = this._onKeyPress.bind(this)
@@ -47,7 +50,9 @@ export default class SearchBar extends React.Component {
 
 	render() {
 		const menuStyle = {			
-			minWidth: '402px'
+			minWidth: '250px',
+			position: 'fixed',
+			zIndex: '99'
 		}
 		return (
 			<Autocomplete
@@ -65,3 +70,21 @@ export default class SearchBar extends React.Component {
 		)
 	}
 }
+
+function mapStatetoProps(state) {
+	return {
+		inputValue: state.app.inputValue,
+		data: state.app.data
+	}
+}
+
+function mapDispatchtoProps(dispatch) {
+	return {
+		onChange: bindActionCreators(actions.onChange, dispatch),
+		onSearch: bindActionCreators(actions.onSearch, dispatch),
+		goto: function(path) { dispatch( push(path) ) }
+	}
+}
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(SearchBar)
+
