@@ -17,18 +17,18 @@ class SearchBar extends React.Component {
 	handleRenderItem(item, isHighlighted) {
 		const listStyles = {
 			item : {
-				padding: '5px',
+				padding: '5px 0 5px 2px',
 				cursor: 'default',
 				color: '#eeeeee',
-				background: '#121212'
+				background: '#121212',
 			},
 
 			highlightedItem: {
-				padding: '5px',
+				padding: '5px 0 5px 2px',
 				cursor: 'default',
 				background: '#2a2a2a',
 				color: '#70d9ff',
-				overflow: 'hidden'
+				overflow: 'hidden',
 			}
 			
 		};
@@ -51,8 +51,9 @@ class SearchBar extends React.Component {
 	render() {
 		const menuStyle = {			
 			minWidth: '250px',
+			width: '250px',
 			position: 'fixed',
-			zIndex: '99'
+			zIndex: '99',
 		}
 		return (
 			<Autocomplete

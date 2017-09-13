@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as headerActions from '../../actions/header';
 import * as actions from '../../actions/dashboard'
 import {push} from 'react-router-redux';
-import {FaArrowCircleOLeft, FaArrowCircleORight} from 'react-icons/lib/fa/'
+import {FaArrowCircleOLeft, FaArrowCircleORight, FaSearch} from 'react-icons/lib/fa/'
 
 
 
@@ -21,14 +21,15 @@ class Dashboard extends React.Component {
 				<FaArrowCircleORight className="revealButton" size={40} style={{verticalAlign: '-0.9em'}} onClick={this.props.revealDash}/>
 				<ul className={cn}>
 					<li className="logo">
-					<h1>Fake-tube</h1>
-					<FaArrowCircleOLeft size={40} style={{verticalAlign: '-0.9em'}} onClick={this.props.hideDash}/>
+						<h1>Fake-tube</h1>
+						<FaArrowCircleOLeft size={40} style={{verticalAlign: '-0.9em'}} onClick={this.props.hideDash}/>
 					</li>
 					<li className="search-bar">
 						<SearchBar 
 								history={this.props.history} 
 								location={this.props.location}
 								goto = {this.props.goto}/>
+						<FaSearch size={20} onClick={() => this.props.onSearch(this.props.inputValue)}/>
 					</li>
 					<li className="categories" onClick={() => this.props.changeCategory('0')}>Most Popular</li>
 					<li className="categories" onClick={() => this.props.changeCategory('27')}>Education</li>

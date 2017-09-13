@@ -32,7 +32,6 @@ ReactDOM.render(
 				<div>
 					<ConnectedRouter history={history}>
 						<div>
-							<Route path ='/' component={SearchBar} />
 							<Route path='/' component={Dashboard} />
 							<Switch>
 								<Route exact path='/' component={Video} />

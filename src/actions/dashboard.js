@@ -1,5 +1,6 @@
 import AppConstants  from '../constants/AppConstants';
-import {fetchVideos} from './video'
+import {fetchVideos} from './video';
+import {push} from 'react-router-redux';
 
 export function hideDash(event) {
 	return {
@@ -16,7 +17,8 @@ export function revealDash(event) {
 export function changeCategory(value) {
 	return function(dispatch) {
 		dispatch(setCategory(value)),
-		dispatch(fetchCategory(value))
+		dispatch(fetchCategory(value)),
+		dispatch(push('/'))
 	}
 }
 
