@@ -13,7 +13,7 @@ An ES6 React app that hooks into YouTube's api and allows one to search and watc
 
 ### To-Do
 
-- UI Overhall
+- Playlists
 - Electron
 - Oauth
 - Channels
