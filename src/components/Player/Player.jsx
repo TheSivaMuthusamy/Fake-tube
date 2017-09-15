@@ -17,10 +17,16 @@ class Player extends React.Component {
 	}
 
 	componentDidMount() {
-		const final = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
-		this.setState({
-			id: final
-		})
+		if (this.props.id == '') {
+			const final = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+			this.setState({
+				id: final
+			})
+		} else {
+			this.setState({
+				id: this.props.id
+			})
+		}
 	}
 
 	componentWillUnmount() {
@@ -49,6 +55,10 @@ class Player extends React.Component {
       		borderRadius: '30px'
       	}
 
+      	const sliderStyle = {
+      		marginTop: '15px'
+      	}
+
       	const cn = (this.props.visible) ? 'videowrapper' : 'wrapperhidden'
       	
 		return(
@@ -62,7 +72,7 @@ class Player extends React.Component {
 			        	onStateChange={this.props.onPlayerStateChange}	       	
 			      	/>
 			     <div className="controls">
-					<Slider min={0} max={100} value={this.props.difference} onChange={this.props.seekTo} style={styles}/>
+					<Slider min={0} max={100} value={this.props.difference} onChange={this.props.seekTo} style={styles} sliderStyle={sliderStyle}/>
 			      	<Buttons playing={this.props.playing} onClick={this.props.togglePlay} />
 			      </div>
 		    </div>
@@ -74,7 +84,8 @@ function mapStateToProps(state) {
 	return {
 		playing: state.app.playing,
 		difference: state.app.difference,
-		visible: state.app.visible
+		visible: state.app.visible,
+		id: state.app.videos.id
 	}
 }
 

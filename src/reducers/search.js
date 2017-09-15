@@ -20,7 +20,8 @@ export default(state ={}, action) => {
 				...state,
 				videos: {
 					...state.videos,
-					search: action.data.items
+					search: action.data.items,
+					shortSearch: action.data.items.slice(0,19)
 				},
 				pageToken: {
 					...state.pageToken,

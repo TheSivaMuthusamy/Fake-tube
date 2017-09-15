@@ -9,7 +9,9 @@ export default{
         difference: 0,
         videos: {
         	search: [],
-        	grid: [] 
+        	grid: [],
+            shortSearch: [],
+            id: ''
         },
         pageToken: {
             search: '',

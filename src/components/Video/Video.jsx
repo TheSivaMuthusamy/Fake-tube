@@ -28,7 +28,7 @@ class Video extends React.Component {
 	}
 
 	render() {
-		const cn = (this.props.visible) ? 'vid-grid' : 'vid-grid-hidden'
+		const cn = (this.props.visible) ? 'vid-grid' : 'vid-grid-hidden';
 		return (
 			<div className={cn}>
 				{this.props.videos.map((vid, key) =>  {

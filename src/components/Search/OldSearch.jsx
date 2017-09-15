@@ -71,19 +71,19 @@ class Search extends React.Component {
 	}
 
 	render() {
-		const cn = (this.props.visible) ? 'vid-grid' : 'vid-grid-hidden';
 		return(
-			<div className={cn}>
-				{this.props.videos.map((vid, key) => {
+			<div className="results-list">
+				{this.props.videos.map((result, key) => {
 					return (
-						<div className="vid" key={key}> 
-							<Link to={'/video/' + vid.id.videoId}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></Link>
-							<h3 className="vid-title"><Link to={'/video/' + vid.id.videoId}>{vid.snippet.title}</Link></h3>
-							<p className="vid-channel">{vid.snippet.channelTitle}</p>
+						<div className="result" key={key}>
+							<Link to={'/video/' + result.id.videoId}><img src={result.snippet.thumbnails.medium.url} className="result-thumbnail"/></Link>
+							<h3 className="result-title"><Link to={'/video/' + result.id.videoId}>{result.snippet.title}</Link></h3>
+							<p className="result-channel">{result.snippet.channelTitle}</p>
 							<ul className="vid-stats">
-								<Views id={vid.id.videoId}/>
-								<li>{timeSince(vid.snippet.publishedAt)}</li>
+								<Views id={result.id.videoId}/>
+								<li>{timeSince(result.snippet.publishedAt)}</li>
 							</ul>
+							<p className='result-description'>{result.snippet.description}</p>
 						</div>
 					);
 				})}
@@ -98,7 +98,6 @@ function mapStateToProps(state) {
 		videos: state.app.videos.search,
 		pageToken: state.app.pageToken.search,
 		value: state.app.searchValue,
-		visible: state.app.visible
 	}
 }
 

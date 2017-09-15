@@ -15,6 +15,15 @@ export default(state ={}, action) => {
 				}
 			}
 		}
+		case(AppConstants.SET_ID): {
+			return {
+				...state,
+				videos: {
+					...state.videos,
+					id: action.id
+				}
+			}
+		}
 		default: {
 			return state
 		}

@@ -5,58 +5,24 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/header';
 import {push} from 'react-router-redux';
-
-function Logo() {
-	return (
-		<div className= "logo">
-			<Link to='/'><h1>Fake-tube</h1></Link>
-		</div>
-	);
-}
-
-function Login() {
-	return (
-		<div>
-			Login
-		</div>
-	)
-}
-
-class Menu extends React.Component {
-	constructor(props) {
-		super(props)
-	}
-	
-	render(){
-		return (
-			<div className="search-bar">
-				<SearchBar inputValue={this.props.inputValue}
-					onChange={this.props.onChange}
-					onSearch={this.props.onSearch}
-					data={this.props.data}
-					history={this.props.history} 
-					location={this.props.location}
-					goto = {this.props.goto}/>
-			</div>
-		);
-	}
-}
+import {FaSearch} from 'react-icons/lib/fa/';
 
 class Header extends React.Component {
 	render() {
+		const menuStyle = {		
+			position: 'fixed',
+			zIndex: '99',
+			fontSize: '16px',
+			fontWeight: '600'
+		};
+		const cn = (this.props.visible) ? "search-bar-big" : "search-bar-big-hidden";
 		return (
-			<div className="header">
-				<div className="header-content">
-					<Logo />
-					<Menu inputValue={this.props.inputValue}
-					onChange={this.props.onChange}
-					onSearch={this.props.onSearch}
-					data={this.props.data}
+			<div className={cn}>
+				<SearchBar 
 					history={this.props.history} 
 					location={this.props.location}
-					goto = {this.props.goto} />
-					<Login />
-				</div>
+					menuStyle= {menuStyle}/>
+				<FaSearch size={45} style={{verticalAlign: 'bottom'}} onClick={() => this.props.onSearch(this.props.inputValue)}/>
 			</div>
 		)
 	}
@@ -65,15 +31,13 @@ class Header extends React.Component {
 function mapStatetoProps(state) {
 	return {
 		inputValue: state.app.inputValue,
-		data: state.app.data
+		visible: state.app.visible
 	}
 }
 
 function mapDispatchtoProps(dispatch) {
 	return {
-		onChange: bindActionCreators(actions.onChange, dispatch),
 		onSearch: bindActionCreators(actions.onSearch, dispatch),
-		goto: function(path) { dispatch( push(path) ) }
 	}
 }
 

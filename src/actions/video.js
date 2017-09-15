@@ -17,3 +17,10 @@ export function fetchVideos(category = '0', pageToken = '') {
 		)
 	}
 }
+
+export function clickVideo(id) {
+	return {
+		type: AppConstants.SET_ID,
+		id
+	}
+}

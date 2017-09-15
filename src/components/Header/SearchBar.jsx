@@ -49,12 +49,6 @@ class SearchBar extends React.Component {
 	}
 
 	render() {
-		const menuStyle = {			
-			minWidth: '250px',
-			width: '250px',
-			position: 'fixed',
-			zIndex: '99',
-		}
 		return (
 			<Autocomplete
 			ref = "search"
@@ -65,7 +59,7 @@ class SearchBar extends React.Component {
 			onChange={this.props.onChange}
 			onSelect={this.props.onSearch}
 			renderItem={this.handleRenderItem}
-			menuStyle= {menuStyle}
+			menuStyle= {this.props.menuStyle}
 			autoHighlight= {false}
 			/>
 		)
