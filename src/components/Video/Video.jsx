@@ -44,7 +44,7 @@ class Video extends React.Component {
 						</div>
 					);
 				})}
-				<Waypoint onEnter={this.infiniteLoad.bind(this)} threshold={1.0} />
+				<Waypoint onEnter={this.infiniteLoad.bind(this)} threshold={0.1} />
 			</div>
 		)
 	}
