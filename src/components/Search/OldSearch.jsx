@@ -8,8 +8,8 @@ import Waypoint from 'react-waypoint';
 
 
 class Views extends React.Component {
-	constructor(props){
-		super(props)
+	constructor(){
+		super()
 		this.state = {
 			viewCount: ''
 		}
@@ -38,8 +38,8 @@ class Views extends React.Component {
 }
 
 class Search extends React.Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.state = {
 			loading: false
 		}

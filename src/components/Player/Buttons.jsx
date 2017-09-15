@@ -1,11 +1,11 @@
 import React from 'react';
 import {MdPlayCircleOutline, MdPause} from 'react-icons/lib/md/';
-
-
+import {FaSearch} from 'react-icons/lib/fa';
+import {Link} from 'react-router-dom';
 
 export default class Buttons extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 	}
 
 	render() {
@@ -15,6 +15,7 @@ export default class Buttons extends React.Component {
 					? <MdPause onClick={this.props.onClick}/>
 					: <MdPlayCircleOutline onClick={this.props.onClick}/>
 				}
+				<Link to={'/search/' + this.props.searchValue}><FaSearch className="return" size={35}/></Link>
 			</div>
 		)
 	}

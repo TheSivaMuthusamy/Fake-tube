@@ -1,15 +1,15 @@
 import React from 'react';
 import {timeSince} from '../../utils/utils';
-import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/search';
+import * as videoActions from '../../actions/video'
 import Waypoint from 'react-waypoint';
 
 
 class Views extends React.Component {
-	constructor(props){
-		super(props)
+	constructor(){
+		super()
 		this.state = {
 			viewCount: ''
 		}
@@ -38,8 +38,8 @@ class Views extends React.Component {
 }
 
 class Search extends React.Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.state = {
 			loading: false
 		}
@@ -77,8 +77,8 @@ class Search extends React.Component {
 				{this.props.videos.map((vid, key) => {
 					return (
 						<div className="vid" key={key}> 
-							<Link to={'/video/' + vid.id.videoId}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></Link>
-							<h3 className="vid-title"><Link to={'/video/' + vid.id.videoId}>{vid.snippet.title}</Link></h3>
+							<a href={'#/video/' + vid.id.videoId} onClick={() => this.props.clickVideo(vid.id.videoId)}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></a>
+							<h3 className="vid-title"><a href={'#/video/' + vid.id.videoId} onClick={() => this.props.clickVideo(vid.id.videoId)}>>{vid.snippet.title}</a></h3>
 							<p className="vid-channel">{vid.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<Views id={vid.id.videoId}/>
@@ -106,6 +106,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		fetchSearch: bindActionCreators(actions.fetchSearch, dispatch),
 		fetchNewSearch: bindActionCreators(actions.fetchNewSearch, dispatch),
+		clickVideo: bindActionCreators(videoActions.clickVideo, dispatch)
 	}
 }
 

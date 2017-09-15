@@ -29,6 +29,14 @@ class Player extends React.Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.id !== this.props.id) {
+			this.setState({
+				id: nextProps.id
+			})
+		}
+	}
+
 	componentWillUnmount() {
 		this.props.clearTime()
 	}
@@ -73,7 +81,7 @@ class Player extends React.Component {
 			      	/>
 			     <div className="controls">
 					<Slider min={0} max={100} value={this.props.difference} onChange={this.props.seekTo} style={styles} sliderStyle={sliderStyle}/>
-			      	<Buttons playing={this.props.playing} onClick={this.props.togglePlay} />
+			      	<Buttons playing={this.props.playing} onClick={this.props.togglePlay} searchValue={this.props.searchValue} />
 			      </div>
 		    </div>
 		)
@@ -85,7 +93,8 @@ function mapStateToProps(state) {
 		playing: state.app.playing,
 		difference: state.app.difference,
 		visible: state.app.visible,
-		id: state.app.videos.id
+		id: state.app.videos.id,
+		searchValue: state.app.searchValue
 	}
 }
 

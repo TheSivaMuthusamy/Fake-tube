@@ -1,10 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import SearchBar from './SearchBar';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/header';
-import {push} from 'react-router-redux';
 import {FaSearch} from 'react-icons/lib/fa/';
 
 class Header extends React.Component {
@@ -21,7 +19,8 @@ class Header extends React.Component {
 				<SearchBar 
 					history={this.props.history} 
 					location={this.props.location}
-					menuStyle= {menuStyle}/>
+					menuStyle= {menuStyle}
+					onSearch = {this.props.onSearch}/>
 				<FaSearch size={45} style={{verticalAlign: 'bottom'}} onClick={() => this.props.onSearch(this.props.inputValue)}/>
 			</div>
 		)

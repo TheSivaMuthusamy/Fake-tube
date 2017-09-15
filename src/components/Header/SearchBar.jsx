@@ -1,7 +1,6 @@
 import React from 'react';
 import Autocomplete from 'react-autocomplete';
 import JSONP from 'jsonp';
-import {push} from 'react-router-redux';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/header';
@@ -9,8 +8,8 @@ import * as actions from '../../actions/header';
 const googleAutoSuggestURL = '//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=';
 
 class SearchBar extends React.Component {	
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this._onKeyPress = this._onKeyPress.bind(this)
 	}
 
@@ -76,8 +75,6 @@ function mapStatetoProps(state) {
 function mapDispatchtoProps(dispatch) {
 	return {
 		onChange: bindActionCreators(actions.onChange, dispatch),
-		onSearch: bindActionCreators(actions.onSearch, dispatch),
-		goto: function(path) { dispatch( push(path) ) }
 	}
 }
 

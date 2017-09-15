@@ -34,8 +34,8 @@ class Video extends React.Component {
 				{this.props.videos.map((vid, key) =>  {
 					return (
 						<div className="vid" key={key}> 
-							<Link to={'/video/' + vid.id}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></Link>
-							<h3 className="vid-title"><Link to={'/video/' + vid.id}>{vid.snippet.title}</Link></h3>
+							<a href={'#/video/' + vid.id} onClick={() => this.props.clickVideo(vid.id)}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></a>
+							<h3 className="vid-title"><a href={'#/video/' + vid.id} onClick={() => this.props.clickVideo(vid.id)}>>{vid.snippet.title}</a></h3>
 							<p className="vid-channel">{vid.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<li>{parseInt(vid.statistics.viewCount).toLocaleString('en')} views</li>
@@ -62,6 +62,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		fetchVideos: bindActionCreators(actions.fetchVideos, dispatch),
+		clickVideo: bindActionCreators(actions.clickVideo, dispatch)
 	}
 }
 
