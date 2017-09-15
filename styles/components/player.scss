@@ -47,9 +47,18 @@
     height: 100%;
 }
 
-@media screen and (min-width: 1441px) {
+@media screen and (mix-width: 1701px) {
     .videowrapper {
-        height: 734.375px;
+        height: 776.25;
+        width: 1380px;
+        padding: 0px;
+        transition: 0.2s;
+    }
+}
+
+@media screen and (max-width: 1700px) {
+    .videowrapper {
+        height: 648.875px;
         width: 1150px;
         padding: 0px;
         transition: 0.2s;
