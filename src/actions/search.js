@@ -3,7 +3,7 @@ import {setValue} from './header'
 
 export function fetchSearch(query, pageToken = '') {
 	return function(dispatch) {
-		fetch('https://www.googleapis.com/youtube/v3/search?pageToken=' + pageToken + '&part=snippet&maxResults=20&q=' + query + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
+		fetch('https://www.googleapis.com/youtube/v3/search?pageToken=' + pageToken + '&part=snippet&maxResults=40&q=' + query + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
 			.then(response => response.json())
 			.then(data => 
 			dispatch(moreItems(data))
@@ -13,7 +13,7 @@ export function fetchSearch(query, pageToken = '') {
 
 export function fetchNewSearch(query, pageToken = '') {
 	return function(dispatch) {
-		fetch('https://www.googleapis.com/youtube/v3/search?pageToken=' + pageToken + '&part=snippet&maxResults=20&q=' + query + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
+		fetch('https://www.googleapis.com/youtube/v3/search?pageToken=' + pageToken + '&part=snippet&maxResults=40&q=' + query + '&regionCode=us&type=video&key=AIzaSyC1U2ObFKJmvmDltBCA_M6S3xHS3lNo-pg')
 			.then(response => response.json())
 			.then(data =>
 			dispatch(setSearch(data)),
