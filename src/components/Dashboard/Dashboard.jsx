@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
 		const menuStyle = {			
 			minWidth: '250px',
 			width: '250px',
-			position: 'fixed',
+			position: 'absolute',
 			zIndex: '99',
 			fontSize: '16px',
 			fontWeight: '600'

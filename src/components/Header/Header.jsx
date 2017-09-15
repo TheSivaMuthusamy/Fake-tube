@@ -7,8 +7,10 @@ import {FaSearch} from 'react-icons/lib/fa/';
 
 class Header extends React.Component {
 	render() {
-		const menuStyle = {		
-			position: 'fixed',
+		const menuStyle = {
+			left: 'auto',
+			top: 'auto',
+			position: 'absolute',
 			zIndex: '99',
 			fontSize: '16px',
 			fontWeight: '600'
