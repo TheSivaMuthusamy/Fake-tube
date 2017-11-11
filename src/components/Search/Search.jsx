@@ -46,7 +46,7 @@ class Search extends React.Component {
 	}
 
 	componentDidMount() {
-		if (this.props.value == '') {
+		if (this.props.value === '') {
 			const unfiltered = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
 			const filtered = unfiltered.replace(/\+/g, " ")
 			this.props.fetchNewSearch(filtered)
@@ -78,7 +78,7 @@ class Search extends React.Component {
 					return (
 						<div className="vid" key={key}> 
 							<a href={'#/video/' + vid.id.videoId} onClick={() => this.props.clickVideo(vid.id.videoId)}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></a>
-							<h3 className="vid-title"><a href={'#/video/' + vid.id.videoId} onClick={() => this.props.clickVideo(vid.id.videoId)}>>{vid.snippet.title}</a></h3>
+							<h3 className="vid-title"><a href={'#/video/' + vid.id.videoId} onClick={() => this.props.clickVideo(vid.id.videoId)}>{vid.snippet.title}</a></h3>
 							<p className="vid-channel">{vid.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<Views id={vid.id.videoId}/>

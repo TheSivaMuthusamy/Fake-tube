@@ -17,7 +17,7 @@ class Player extends React.Component {
 	}
 
 	componentDidMount() {
-		if (this.props.id == '') {
+		if (this.props.id === '') {
 			const final = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
 			this.setState({
 				id: final

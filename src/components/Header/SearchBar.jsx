@@ -41,7 +41,7 @@ class SearchBar extends React.Component {
 
 	_onKeyPress(event) {		
 		if (event.keyCode == 13 && this.props.inputValue !== '' 
-			&& this.refs.search.state.highlightedIndex == null) {
+			&& this.refs.search.state.highlightedIndex === null) {
 				this.props.onSearch(this.props.inputValue)
 		}
 

@@ -46,7 +46,7 @@ class Search extends React.Component {
 	}
 
 	componentDidMount() {
-		if (this.props.value == '') {
+		if (this.props.value === '') {
 			const unfiltered = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
 			const filtered = unfiltered.replace(/\+/g, " ")
 			this.props.fetchNewSearch(filtered)

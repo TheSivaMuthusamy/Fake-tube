@@ -35,7 +35,7 @@ class Video extends React.Component {
 					return (
 						<div className="vid" key={key}> 
 							<a href={'#/video/' + vid.id} onClick={() => this.props.clickVideo(vid.id)}><img src={vid.snippet.thumbnails.medium.url} className="thumbnail"/></a>
-							<h3 className="vid-title"><a href={'#/video/' + vid.id} onClick={() => this.props.clickVideo(vid.id)}>>{vid.snippet.title}</a></h3>
+							<h3 className="vid-title"><a href={'#/video/' + vid.id} onClick={() => this.props.clickVideo(vid.id)}>{vid.snippet.title}</a></h3>
 							<p className="vid-channel">{vid.snippet.channelTitle}</p>
 							<ul className="vid-stats">
 								<li>{parseInt(vid.statistics.viewCount).toLocaleString('en')} views</li>
